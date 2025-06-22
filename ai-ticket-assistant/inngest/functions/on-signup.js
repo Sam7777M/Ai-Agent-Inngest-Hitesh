@@ -17,7 +17,7 @@ export const onUserSignup = inngest.createFunction(
         return userObject;
       });
 
-      await setp.run("send-welcome-email", async () => {
+      await step.run("send-welcome-email", async () => {
         const subject = `Welcome to the app`;
         const message = `Hi,
             \n\n
@@ -25,7 +25,6 @@ export const onUserSignup = inngest.createFunction(
             `;
         await sendMail(user.email, subject, message);
       });
-
       return { success: true };
     } catch (error) {
       console.error("❌ Error running step", error.message);

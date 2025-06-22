@@ -39,7 +39,7 @@ export const getTickets = async (req, res) => {
     const user = req.user;
     let tickets = [];
     if (user.role !== "user") {
-      tickets = Ticket.find({})
+      tickets = await Ticket.find({})
         .populate("assignedTo", ["email", "_id"])
         .sort({ createdAt: -1 });
     } else {
