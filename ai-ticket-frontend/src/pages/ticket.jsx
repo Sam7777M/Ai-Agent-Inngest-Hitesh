@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
 export default function TicketDetailsPage() {
   const { id } = useParams();
   const [ticket, setTicket] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
 
@@ -36,6 +37,31 @@ export default function TicketDetailsPage() {
 
     fetchTicket();
   }, [id]);
+
+  const handleDelete = async () => {
+    if (!window.confirm("Are you sure you want to delete this ticket?")) return;
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/tickets/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await res.json();
+      if (res.ok) {
+        alert("Ticket deleted successfully");
+        navigate("/");
+      } else {
+        alert(data.message || "Failed to delete ticket");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong");
+    }
+  };
 
   if (loading)
     return <div className="text-center mt-10">Loading ticket details...</div>;
@@ -91,6 +117,13 @@ export default function TicketDetailsPage() {
             )}
           </>
         )}
+
+        <button
+          className="btn btn-error mt-4"
+          onClick={handleDelete}
+        >
+          Delete Ticket
+        </button>
       </div>
     </div>
   );

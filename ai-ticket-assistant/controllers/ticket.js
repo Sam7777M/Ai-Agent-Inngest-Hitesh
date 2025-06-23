@@ -80,3 +80,25 @@ export const getTicket = async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+export const deleteTicket = async (req, res) => {
+  try {
+    const user = req.user;
+    let ticket;
+    if (user.role !== "user") {
+      ticket = await Ticket.findByIdAndDelete(req.params.id);
+    } else {
+      ticket = await Ticket.findOneAndDelete({
+        _id: req.params.id,
+        createdBy: user._id,
+      });
+    }
+    if (!ticket) {
+      return res.status(404).json({ message: "Ticket not found or not authorized" });
+    }
+    return res.status(200).json({ message: "Ticket deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting ticket", error.message);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
