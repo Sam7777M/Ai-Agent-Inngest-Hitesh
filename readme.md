@@ -1,7 +1,6 @@
-# AI-Ticket-Assistant - ChaiCode
+# AI-Ticket-Assistant
 
 Welcome to the AI-Powered Ticket Management System!
-This course is a part of Chaicode youtube video series. This project is a web application that uses AI to automatically categorize, prioritize, and assign support tickets to the most appropriate moderators.
 
 # AI-Powered Ticket Management System
 
@@ -56,7 +55,7 @@ A smart ticket management system that uses AI to automatically categorize, prior
 
    ```bash
    git clone <repository-url>
-   cd ai-ticket-assistant
+   cd Auto-Ticket-Assigning-Agent
    ```
 
 2. **Install dependencies**
@@ -167,52 +166,3 @@ A smart ticket management system that uses AI to automatically categorize, prior
      "description": "Experiencing intermittent database connection timeouts"
    }'
    ```
-
-## 🔍 Troubleshooting
-
-### Common Issues
-
-1. **Port Conflicts**
-   If you see "address already in use" error:
-
-   ```bash
-   # Find process using port 8288
-   lsof -i :8288
-   # Kill the process
-   kill -9 <PID>
-   ```
-
-2. **AI Processing Errors**
-
-   - Verify GEMINI_API_KEY in .env
-   - Check API quota and limits
-   - Validate request format
-
-3. **Email Issues**
-   - Verify Mailtrap credentials
-   - Check SMTP settings
-   - Monitor email delivery logs
-
-## 📚 Dependencies
-
-- `@inngest/agent-kit`: ^0.7.3
-- `bcrypt`: ^5.1.1
-- `cors`: ^2.8.5
-- `dotenv`: ^16.5.0
-- `express`: ^5.1.0
-- `inngest`: ^3.35.0
-- `jsonwebtoken`: ^9.0.2
-- `mongoose`: ^8.13.2
-- `nodemailer`: ^6.10.1
-
-## 🤝 Contributing
-
-we don't accept contributions for this project, as this is a part of a video and code files needs to given as it is.
-
-## 🙏 Acknowledgments
-
-- Inngest for background job processing
-- Google Gemini for AI capabilities
-- Mailtrap for email testing
-- MongoDB for database
-# Ai-Agent-Inngest-Hitesh
